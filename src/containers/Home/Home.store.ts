@@ -1,58 +1,21 @@
 import { makeAutoObservable } from 'mobx'
+import { EditorState } from 'draft-js'
 
-import { CityWeather, Fact } from '~/api/models'
 import { UtilsStore } from '~/store/utils'
 
 export class HomeStore {
-  facts: Fact[] = []
-  factsFetching = false
-  factsFetched = false
+  editorState = makeAutoObservable(EditorState.createEmpty())
 
-  city?: string
-  weather?: CityWeather
-  weatherFetching = false
-  weatherFetched = false
-
-  constructor(private utils: UtilsStore) {
+  constructor(private readonly utils: UtilsStore) {
     makeAutoObservable(this)
+    console.log(this.utils)
   }
 
-  fetchFacts = async (): Promise<void> => {
-    this.factsFetching = true
-
-    try {
-      this.facts = await this.utils.api.getFacts(5)
-      this.factsFetched = true
-    } catch (error) {
-      this.utils.notification.error(error)
-      this.utils.logger.error(error)
-    } finally {
-      this.factsFetching = false
-    }
-  }
-
-  fetchWeather = async (): Promise<void> => {
-    if (!this.city) return
-
-    this.weatherFetching = true
-
-    try {
-      this.weather = await this.utils.api.getCityWeather(this.city)
-      this.weatherFetched = true
-    } catch (error) {
-      this.utils.notification.error(error)
-      this.utils.logger.error(error)
-    } finally {
-      this.weatherFetching = false
-    }
-  }
-
-  setCity = (city: string): void => {
-    this.city = city
+  setEditorState = (state: EditorState): void => {
+    this.editorState = state
   }
 
   mountPage = (): void => {
-    if (!this.factsFetched) this.fetchFacts()
-    if (!this.weatherFetched) this.fetchWeather()
+    console.log('mount...')
   }
 }

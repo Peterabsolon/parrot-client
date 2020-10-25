@@ -4,6 +4,7 @@ export type { BoxProps, FlexProps, HeadingProps, TextProps } from 'rebass'
 
 // Form controls
 export * from './control/Input'
+export * from './control/Editor'
 
 // UI
 export * from './ui/Banner'

@@ -1,16 +1,7 @@
+// generated from the GraphQL schema
 export * from '../generated'
 
-export interface Fact {
-  _id: string
-  text: string
-}
-
-export interface CityWeather {
+export interface ExampleThirdPartyModel {
   id: string
-  weather: {
-    summary: {
-      title: string
-      description: string
-    }
-  }
+  text: string
 }
