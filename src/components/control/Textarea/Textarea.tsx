@@ -23,12 +23,6 @@ const StyledTextarea = styled(RCTextareaAutosize)`
     outline: none;
     background: ${(props) => props.theme.colors.backgroundLight};
   }
-
-  :hover,
-  :focus {
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.primary};
-    border-color: ${(props) => props.theme.colors.primary};
-  }
 ` as typeof RCTextareaAutosize
 
 export const Textarea: FC<TextareaAutosizeProps> = observer(({ onChange, onBlur, ...rest }) => {

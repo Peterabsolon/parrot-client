@@ -1,5 +1,18 @@
 # My awesome boilerplate
 
+## Development
+
+```bash
+yarn dev
+```
+
+## Production
+
+```bash
+yarn build
+yarn start
+```
+
 ## Stack
 
 - TypeScript
