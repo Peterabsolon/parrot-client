@@ -6,9 +6,7 @@ import { UtilsStore } from '~/store/utils'
 import { INITIAL_TEXT } from './constants'
 
 export class HomeStore {
-  editorState = makeAutoObservable(
-    EditorState.createWithContent(ContentState.createFromText(INITIAL_TEXT))
-  )
+  editorState = EditorState.createWithContent(ContentState.createFromText(INITIAL_TEXT))
 
   constructor(private readonly utils: UtilsStore) {
     makeAutoObservable(this)

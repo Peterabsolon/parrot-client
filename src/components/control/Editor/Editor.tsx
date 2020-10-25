@@ -10,9 +10,10 @@ interface EditorProps extends DraftEditorProps {
 }
 
 const Wrapper = styled(Box)`
-  border-radius: ${(props) => props.theme.radii.default}px;
   padding: 20px 32px;
-  background: ${(props) => props.theme.colors.backgroundLight};
+  * {
+    font-family: ${(props) => props.theme.fonts.heading};
+  }
 `
 
 export const Editor: FC<EditorProps> = observer(({ forwardRef, ...props }) => {

@@ -6,15 +6,22 @@ console.log('defaults', defaults)
 
 export type ThemeKey = 'light' | 'dark'
 
-const fonts = {
-  ...defaults.fonts,
-  body: 'PT Sans',
-  heading: 'PT Serif',
+const shared = {
+  ...defaults,
+  fonts: {
+    ...defaults.fonts,
+    body: 'PT Sans',
+    heading: 'PT Serif',
+  },
+  radii: {
+    ...defaults.radii,
+    default: 7,
+  },
 }
 
 const colorPrimary = '#339AF0'
 
-const colorBackgroundDark = '#1b2735'
+const colorBackgroundDark = '#101720'
 
 // Theme interface has to be defined in ".d.ts" file in order for styled-components to pick it up
 export const themes: { [key in ThemeKey]: Theme } = {
@@ -22,8 +29,7 @@ export const themes: { [key in ThemeKey]: Theme } = {
   // Light
   // ====================================================
   light: {
-    ...defaults,
-    fonts,
+    ...shared,
     colors: {
       ...defaults.colors,
       background: 'white',
@@ -32,7 +38,7 @@ export const themes: { [key in ThemeKey]: Theme } = {
       primary: colorPrimary,
       secondary: '#74d3f9',
       text: '#333',
-      border: 'gray',
+      border: '#d7d9da',
     },
   },
 
@@ -40,17 +46,16 @@ export const themes: { [key in ThemeKey]: Theme } = {
   // Dark
   // ====================================================
   dark: {
-    ...defaults,
-    fonts,
+    ...shared,
     colors: {
       ...defaults.colors,
-      background: colorBackgroundDark,
-      backgroundDark: color(colorBackgroundDark).darken(0.25).string(),
+      background: '#18191a',
+      backgroundDark: color(colorBackgroundDark).darken(0.1).string(),
       backgroundLight: color(colorBackgroundDark).lighten(0.2).string(),
       primary: colorPrimary,
       secondary: 'hsl(0 0% 95% / 1)',
-      text: '#fff',
-      border: 'gray',
+      text: '#e4e6eb',
+      border: '#3d4042',
     },
   },
 }
