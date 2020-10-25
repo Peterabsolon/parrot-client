@@ -4,7 +4,6 @@ import { ThemeKey, themes } from '~/constants'
 
 export class ThemeStore {
   key: ThemeKey = 'dark'
-  authToken?: string = undefined
 
   constructor() {
     makeAutoObservable(this)

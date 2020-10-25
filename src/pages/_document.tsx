@@ -23,6 +23,10 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta name="title" content={APP_NAME} />
           <meta name="description" content={APP_DESCRIPTION} />
+          <link
+            href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif:400,700"
+            rel="stylesheet"
+          />
         </Head>
 
         <body>

@@ -3,5 +3,7 @@ interface Theme extends Omit<RebassTheme, 'colors'> {
 
   colors: RebassTheme['colors'] & {
     backgroundDark: string
+    backgroundLight: string
+    border: string
   }
 }

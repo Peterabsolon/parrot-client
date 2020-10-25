@@ -2,12 +2,14 @@ import { FC, useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { PageTransition } from 'next-page-transitions'
 import styled, { createGlobalStyle } from 'styled-components'
-import { Heading, Flex } from 'rebass'
+import { Flex } from 'rebass'
 import { observer } from 'mobx-react-lite'
 
 import { APP_NAME, RouteEnum, RouteLabels } from '~/constants'
 import { Button } from '~/components/ui/Button'
+import { Heading } from '~/components/ui/Heading'
 import { Link } from '~/components/ui/Link'
+import { ParrotIcon } from '~/components/icons'
 import { useStore } from '~/store'
 import { keys } from '~/utils'
 
@@ -23,6 +25,8 @@ const GlobalStyles = createGlobalStyle<any>`
   body * {
     color: ${(props) => props.theme.colors.text};
     font-family: ${(props) => props.theme.fonts.body};
+    line-height: ${(props) => props.theme.lineHeights.body};
+    font-size: 15px;
   }
 
   .page-transition-enter {
@@ -88,9 +92,7 @@ export const App: FC<AppProps> = observer(({ Component, pageProps, router }) => 
 
   const windowObj = typeof window === 'undefined' ? undefined : window
 
-  useEffect(() => {
-    store.utils.initApp()
-  }, [windowObj])
+  useEffect(store.utils.initApp, [windowObj])
 
   return (
     <Wrapper background={theme.colors?.background}>
@@ -98,16 +100,19 @@ export const App: FC<AppProps> = observer(({ Component, pageProps, router }) => 
 
       <Header>
         <HeaderContent>
-          <Heading fontSize={16} color="primary">
-            {APP_NAME}
-          </Heading>
+          <Flex alignItems="center">
+            <ParrotIcon mr={2} size={30} primary />
+            <Heading fontSize={16} color="primary">
+              {APP_NAME}
+            </Heading>
+          </Flex>
 
           <Flex justifyContent="center">
             {keys(RouteEnum).map((key) => {
               const href = RouteEnum[key]
 
               return (
-                <Heading key={href} fontSize={14} color="secondary" mr={2}>
+                <Heading key={href} fontSize={14} color="primary" mr={2}>
                   <Link href={href}>{RouteLabels[href]}</Link>
                 </Heading>
               )

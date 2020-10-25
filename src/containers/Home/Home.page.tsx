@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { Heading, Editor } from '~/components'
+import { Box, Editor, Flex } from '~/components'
 import { useStore } from '~/store'
 
 export const HomePage: FC = observer(() => {
@@ -13,18 +13,11 @@ export const HomePage: FC = observer(() => {
 
   return (
     <>
-      <>
-        <Heading color="primary" mb={2}>
-          Transcribe demo
-        </Heading>
-
-        <Editor
-          forwardRef={editorRef}
-          editorState={editorState}
-          onChange={setEditorState}
-          placeholder="Search"
-        />
-      </>
+      <Flex>
+        <Box width={600}>
+          <Editor forwardRef={editorRef} editorState={editorState} onChange={setEditorState} />
+        </Box>
+      </Flex>
     </>
   )
 })
