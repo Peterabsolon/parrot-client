@@ -11,10 +11,6 @@ const shared = {
     body: 'PT Serif',
     heading: 'PT Serif',
   },
-  radii: {
-    ...defaults.radii,
-    default: 7,
-  },
 }
 
 const colorPrimary = '#339AF0'

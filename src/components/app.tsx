@@ -52,6 +52,28 @@ const GlobalStyles = createGlobalStyle`
     opacity: 0;
     transition: ${PAGE_TRANSITION_DURATION}ms ease-out;
   }
+
+  scrollbar-color: ${(props) => props.theme.colors.scrollbar} transparent;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+
+    &-thumb {
+      background: ${(props) => props.theme.colors.scrollbar};
+      border-radius: 10px;
+      background-clip: content-box;
+
+      &:hover {
+        background: ${(props) => props.theme.colors.scrollbarHover};
+      }
+    }
+
+    &-track,
+    &-corner {
+      background: transparent;
+    }
+  }
 `
 
 const Header = styled.div`

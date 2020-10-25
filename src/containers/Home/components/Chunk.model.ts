@@ -8,7 +8,6 @@ export class ChunkModel implements Chunk {
   text: string
   textDefault: string
 
-  // cursors
   from: number
   to: number
 
@@ -18,11 +17,19 @@ export class ChunkModel implements Chunk {
     this.textDefault = data.text
   }
 
-  setText = (text: string): void => {
+  get pristine(): boolean {
+    return this.text === this.textDefault
+  }
+
+  update = (text: string): void => {
     this.text = text
   }
 
   restore = (): void => {
     this.text = this.textDefault
+  }
+
+  format = (): void => {
+    this.text = this.text.replace(/[\n\r]/g, ' ')
   }
 }

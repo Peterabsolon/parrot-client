@@ -22,13 +22,14 @@ const Speaker = styled.div`
   width: 160px;
   flex-shrink: 0;
   margin-right: 12px;
+  padding-top: 6px;
 `
 
 export const Chunk: FC<ChunkProps> = observer(({ chunk, speaker }) => {
   return (
     <Wrapper>
       <Speaker>{speaker?.name}</Speaker>
-      <Textarea onChange={chunk.setText} value={chunk.text} />
+      <Textarea value={chunk.text} onChange={chunk.update} onBlur={chunk.format} />
     </Wrapper>
   )
 })

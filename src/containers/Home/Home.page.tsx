@@ -42,7 +42,7 @@ const Section = styled(Scroll)<{ withBorder?: boolean }>`
 export const HomePage: FC = observer(() => {
   const editorRef = useRef(null)
 
-  const { mountPage, selectTextRange, speakers } = useStore().pages.HomeStore
+  const { mountPage, speakers } = useStore().pages.HomeStore
 
   useEffect(mountPage, [])
 
@@ -58,18 +58,18 @@ export const HomePage: FC = observer(() => {
         </Section>
 
         <Section withBorder>
-          <button onClick={() => selectTextRange(editorRef, 10, 30)} type="button">
-            select
-          </button>
-
           {CHUNKS.map((chunk) => (
-            <Chunk chunk={chunk} speaker={speakers.get(chunk.speakerId)} />
+            <Chunk
+              key={chunk.text.substr(0, 16)}
+              chunk={chunk}
+              speaker={speakers.get(chunk.speakerId)}
+            />
           ))}
         </Section>
 
         <Section>
           {values(speakers).map((speaker, index) => (
-            <Speaker index={index} speaker={speaker} />
+            <Speaker key={speaker.name} index={index} speaker={speaker} />
           ))}
 
           <Button type="button" variant="outline" mx="auto" display="block" width={200} mt={4}>
