@@ -8,10 +8,10 @@ export interface ButtonProps extends RebassButtonProps {
 }
 
 const StyledRebassButton = styled(RebassButton)`
-  font-weight: 500;
-
   // override specifity
   && {
+    font-weight: 400;
+
     ${(props) => css`
       ${props.onClick &&
       css`

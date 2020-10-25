@@ -4,12 +4,12 @@ export type { BoxProps, FlexProps, TextProps } from 'rebass'
 
 // Form controls
 export * from './control/Input'
-export * from './control/Editor'
+export * from './control/Textarea'
 
 // UI
-export * from './ui/Banner'
 export * from './ui/Button'
 export * from './ui/Heading'
 export * from './ui/Link'
+export * from './ui/Scroll'
 
 // Domain specific

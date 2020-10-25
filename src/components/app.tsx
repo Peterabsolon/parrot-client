@@ -7,14 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { Flex } from 'rebass'
 import { observer } from 'mobx-react-lite'
 
-import {
-  APP_NAME,
-  RouteEnum,
-  RouteLabels,
-  PAGE_PADDING,
-  PAGE_MAX_WIDTH,
-  PAGE_HEADER_HEIGHT,
-} from '~/constants'
+import { APP_NAME, RouteEnum, RouteLabels, PAGE_PADDING, PAGE_HEADER_HEIGHT } from '~/constants'
 import { Heading } from '~/components/ui/Heading'
 import { Link } from '~/components/ui/Link'
 import { ParrotIcon } from '~/components/icons'
@@ -23,34 +16,38 @@ import { keys } from '~/utils'
 
 const PAGE_TRANSITION_DURATION = 80
 
-// TODO: theme types
-const GlobalStyles = createGlobalStyle<any>`
+const GlobalStyles = createGlobalStyle`
   html,
   body,
   body * {
     color: ${(props) => props.theme.colors.text};
     font-family: ${(props) => props.theme.fonts.body};
     line-height: 1.7;
-    font-size: 18px;
+    font-size: 15px;
   }
 
   body {
     background: ${(props) => props.theme.colors.background};
   }
 
+  &::selection {
+    background: ${(props) => props.theme.colors?.selection};
+    color: ${({ theme }) => (theme.key === 'light' ? '#fff' : theme.colors?.text)}
+  }
+
   .page-transition-enter {
     opacity: 0;
   }
-  
+
   .page-transition-enter-active {
     opacity: 1;
     transition: ${PAGE_TRANSITION_DURATION}ms ease-in;
   }
-  
+
   .page-transition-exit {
     opacity: 1;
   }
-  
+
   .page-transition-exit-active {
     opacity: 0;
     transition: ${PAGE_TRANSITION_DURATION}ms ease-out;
@@ -63,8 +60,6 @@ const Header = styled.div`
 
 const Content = styled.div`
   flex: 1;
-  margin: 0 auto;
-  max-width: ${PAGE_MAX_WIDTH}px;
   padding: 0 ${PAGE_PADDING}px;
 `
 
@@ -76,10 +71,6 @@ const HeaderContent = styled(Content)`
   > * {
     flex: 1 1 0;
   }
-`
-
-const PageContent = styled(Content)`
-  min-height: calc(100vh - ${PAGE_HEADER_HEIGHT}px);
 `
 
 export const App: FC<AppProps> = observer(({ Component, pageProps, router }) => {
@@ -121,18 +112,13 @@ export const App: FC<AppProps> = observer(({ Component, pageProps, router }) => 
             <span role="button" onClick={toggleTheme} tabIndex={-1}>
               {themeKey === 'light' ? 'Dark' : 'Light'}
             </span>
-            {/* <span onClick={toggleMockApi} role="button" tabIndex={-1}>
-              {useMockApi ? 'API' : 'Mocks'}
-            </span> */}
           </Flex>
         </HeaderContent>
       </Header>
 
       {appReady && (
         <PageTransition timeout={PAGE_TRANSITION_DURATION} classNames="page-transition">
-          <PageContent key={router.route}>
-            <Component {...pageProps} />
-          </PageContent>
+          <Component key={router.route} {...pageProps} />
         </PageTransition>
       )}
     </>

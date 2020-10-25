@@ -6,5 +6,4 @@ export const GRAPHQL_URL = process.env.GRAPHQL_URL || 'https://graphql-weather-a
 
 export const PAGE_TRANSITION_DURATION = 80
 export const PAGE_PADDING = 24
-export const PAGE_MAX_WIDTH = 1280
 export const PAGE_HEADER_HEIGHT = 55

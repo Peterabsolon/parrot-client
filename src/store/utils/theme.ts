@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
-import { ThemeKey, themes } from '~/constants'
+import { themes } from '~/constants'
 
 export class ThemeStore {
   key: ThemeKey = 'dark'
